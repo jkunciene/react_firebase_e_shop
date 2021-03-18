@@ -4,7 +4,8 @@ import Item from './Item'
 
 const Items = () => {
     return (
-        <div>
+        <div className='container bg-light text-dark'>
+            Items
            <Item/>
         </div>
     )
