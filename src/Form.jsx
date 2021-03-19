@@ -17,6 +17,7 @@ const Form = () => {
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
     const [price, setPrice] = useState('');
+    const [quantity, setQuantity] = useState('');
 
 
     const sendItem = async (e)=>{
@@ -34,6 +35,7 @@ const Form = () => {
         setName('');
         setDescription('');
         setPrice('');
+        setQuantity('');
     }
 
   return(
@@ -59,6 +61,11 @@ const Form = () => {
                 <label >Price</label>
                 <input type="number" className="form-control"  placeholder="Price"
                 value={price} onChange={(e) => setPrice(e.target.value)}/>
+            </div>  
+            <div className="form-group">
+                <label >Quantity</label>
+                <input type="number" className="form-control"  placeholder="Quantity"
+                value={quantity} onChange={(e) => setQuantity(e.target.value)}/>
             </div>       
             <button type="submit" className="btn btn-primary">Submit</button>      
         </form>       

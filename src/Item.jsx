@@ -9,6 +9,7 @@ const Item = () => {
         const query = itemsRef.orderBy('createdAt').limit(25);
 
         const [items] = useCollectionData(query, {idField: 'id'});
+        
     return (
         <div className='d-flex justify-content-center m-3'>
             {items && items.map(item=> (
