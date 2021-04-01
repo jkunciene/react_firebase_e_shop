@@ -19,12 +19,15 @@ const Form = () => {
     const [price, setPrice] = useState('');
     const [quantity, setQuantity] = useState('');
 
+    const [error, setError] = useState('');
 
+   
     const sendItem = async (e)=>{
         e.preventDefault();
         const {uid, photoURL} = auth.currentUser;
 
-        await itemsRef.add({
+        if(name!=='' && description!=='' && price!=='' && quantity!==''){
+            await itemsRef.add({
             text: name,
             description: description,
             price: price,
@@ -32,6 +35,11 @@ const Form = () => {
             uid,
             photoURL
         })
+        } else{
+            setError('Užpildykite formos laukus')
+        }
+
+        
         setName('');
         setDescription('');
         setPrice('');
@@ -46,7 +54,7 @@ const Form = () => {
             {items && items.map(item=> <MyDashboard key={item.id} message={item}/>)}
         </div>
         <form onSubmit={sendItem}>          
-            
+             {error ? <p>{error}</p> : null  } 
             <div className="form-group">
                 <label >Item</label>
                 <input type="text" className="form-control" placeholder="Item"
@@ -68,7 +76,8 @@ const Form = () => {
                 value={quantity} onChange={(e) => setQuantity(e.target.value)}/>
             </div>       
             <button type="submit" className="btn btn-primary">Submit</button>      
-        </form>       
+        </form>   
+        
         </div>
   )
 }

@@ -6,10 +6,10 @@ const auth = firebase.auth();
 const MyDashboard = (props) => {
         const {text, uid, description, price, quantity} = props.message;
         console.log(props.message)
-        const messageClass = uid === auth.currentUser.uid ? 'sent' : 'received';
+       // const loginClass = uid === auth.currentUser.uid ? 'sent' : 'received';
 
   return (
-      <div className={ messageClass}>       
+      <div >       
         <h3>{text}</h3>
         <p>{description}</p>
         <p>Kaina: {price} $ </p>
