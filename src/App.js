@@ -9,6 +9,7 @@ import {
   Link
 } from "react-router-dom";
 import Form from './Form'
+import MyDashboard from './MyDashboard';
 
 const auth = firebase.auth();
 
@@ -24,20 +25,20 @@ function App() {
          <nav>
           <ul className='nav justify-content-center'>
             <li className='nav-link'>
-              <Link to="/items">Home</Link>
+              <Link to="/items" exact >Home</Link>
             </li>
             <li className='nav-link'>
               <Link to="/form">{user ? "Form" : <SignIn />}</Link>
-            </li>
+            </li>          
             <li className='nav-link'>
-              <Link to="/item"> {signOut()}</Link>
+              <Link to="/items"> {signOut()}</Link>
             </li>
            
           </ul>
         </nav>
                
         <Switch>
-          <Route path="/items">
+          <Route path="/myItems">
             <Items />
           </Route>
           <Route path="/form">

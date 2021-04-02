@@ -1,18 +1,13 @@
 import React, { useState} from 'react'
 import firebase from './firebase'
-import {useCollectionData} from "react-firebase-hooks/firestore";
-import MyDashboard from './MyDashboard'
+
 
 const auth = firebase.auth();
 
 const firestore = firebase.firestore();
 
 const Form = () => {
-  
-    const itemsRef = firestore.collection('items');
-    const query = itemsRef.orderBy('createdAt').limit(25);
-
-    const [items] = useCollectionData(query, {idField: 'id'});
+    const itemsRef = firestore.collection('items');   
 
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
@@ -50,9 +45,7 @@ const Form = () => {
       <div className='container'>
           
           <h2 className='p-3'>Best App to Sell Your Stuff</h2>
-        <div className='d-flex justify-content-center'>            
-            {items && items.map(item=> <MyDashboard key={item.id} message={item}/>)}
-        </div>
+        
         <form onSubmit={sendItem}>          
              {error ? <p>{error}</p> : null  } 
             <div className="form-group">
