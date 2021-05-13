@@ -8,24 +8,38 @@ import {
   Route,
   Link
 } from "react-router-dom";
-import Form from './Form'
-import MyDashboard from './MyDashboard';
+import Form from './Form';
 
 const auth = firebase.auth();
 
 function App() {
 
-  const [user] = useAuthState(auth);
+  const [user, loading, error] = useAuthState(auth);
+
+  if(loading){
+    return(
+     <div className="spinner-border text-danger" role="status">
+        <span className="sr-only">Loading...</span>
+      </div>
+    )
+  }
+  if(error){
+    return(
+      <div>
+        <p>Error occured! {error}</p>
+      </div>
+    )
+  }
 
   
   return (
      
       <Router>
-      <div className='bg-light text-dark'>
+      <div >
          <nav>
           <ul className='nav justify-content-center'>
             <li className='nav-link'>
-              <Link to="/items" exact >Home</Link>
+              <Link to="/items"  >Home</Link>
             </li>
             <li className='nav-link'>
               <Link to="/form">{user ? "Form" : <SignIn />}</Link>

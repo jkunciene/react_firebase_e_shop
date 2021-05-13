@@ -13,6 +13,7 @@ const Form = () => {
     const [description, setDescription] = useState('');
     const [price, setPrice] = useState('');
     const [quantity, setQuantity] = useState('');
+    const [imgsrc, setImgsrc] = useState('');
 
     const [error, setError] = useState('');
 
@@ -21,14 +22,18 @@ const Form = () => {
         e.preventDefault();
         const {uid, photoURL} = auth.currentUser;
 
-        if(name!=='' && description!=='' && price!=='' && quantity!==''){
+        if(name!=='' && description!=='' && price!=='' && quantity!=='' && imgsrc !==''){
             await itemsRef.add({
             text: name,
             description: description,
             price: price,
+            src: imgsrc,
             createdAt: firebase.firestore.FieldValue.serverTimestamp(),
             uid,
             photoURL
+        })
+         .then(()=>{
+            alert("Your message has been submitted 👌")
         })
         } else{
             setError('Užpildykite formos laukus')
@@ -39,6 +44,7 @@ const Form = () => {
         setDescription('');
         setPrice('');
         setQuantity('');
+        setImgsrc('');
     }
 
   return(
@@ -57,6 +63,11 @@ const Form = () => {
                 <label>Description</label>
                 <input type="text" className="form-control"  placeholder="Description"
                 value={description} onChange={(e) => setDescription(e.target.value)}/>
+            </div>
+            <div className="form-group">
+                <label>Image</label>
+                <input type="text" className="form-control"  placeholder="Image address"
+                value={imgsrc} onChange={(e) => setImgsrc(e.target.value)}/>
             </div>
             <div className="form-group">
                 <label >Price</label>
