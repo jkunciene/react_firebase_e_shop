@@ -39,22 +39,19 @@ function App() {
          <nav>
           <ul className='nav justify-content-center'>
             <li className='nav-link'>
-              <Link to="/items"  >Home</Link>
+              <Link to="/"  >Home</Link>
             </li>
             <li className='nav-link'>
               <Link to="/form">{user ? "Form" : <SignIn />}</Link>
             </li>          
             <li className='nav-link'>
-              <Link to="/items"> {signOut()}</Link>
+              <Link to="/"> {signOut()}</Link>
             </li>
            
           </ul>
         </nav>
                
-        <Switch>
-          <Route path="/myItems">
-            <Items />
-          </Route>
+        <Switch>       
           <Route path="/form">
             <Form />
           </Route>
